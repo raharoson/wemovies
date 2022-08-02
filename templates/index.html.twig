@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello WeMovieController!{% endblock %}
+
+{% block body %}
+
+<div 
+    {{ stimulus_controller('movie', { 
+        movieId: movies[0].id,
+        videos: videos,
+        url: path('movie')
+    }) }}
+    class="container my-md-4"
+>
+    <div class="search-bar">
+        <div></div>
+
+        <form>
+            <div 
+                class="input-group"
+                {{ stimulus_controller('search-preview', {
+                    url: path('list')
+                }) }}
+            >
+                <input
+                    name="q"
+                    value="{{ searchTerm }}"
+                    placeholder="Search..."
+                    type="search"
+                    class="form-control"
+                    data-action="search-preview#onSearchInput"
+                >
+                <div
+                    class="search-preview"
+                    data-search-preview-target="result"
+                ></div>
+            </div>
+            
+        </form>
+    </div>
+
+    <br/>
+
+    <div id="youtube-player" width="100%" height="450"></div>
+
+    <div class="movie-list">
+        <div class="column-genres">
+            <div>
+                <ul class="list-group list-group-flush">
+                    {% for genre in genres %}
+                        <div class="form-check list-group-item">
+                            <input 
+                                class="form-check-input" 
+                                type="checkbox" value="" 
+                                id="flexCheckDefault" 
+                                disabled
+                                {{ app.request.query.get('genre_id') == genre.id ? 'checked' : '' }}
+                            >
+                            <a href="{{ path('list', { genre_id: genre.id }) }}">{{ genre.name }}</a>
+                        </div>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="column-movies">
+            {% for movie in movies %}
+                <div class="movie-item">
+                    <img class="movie-poster" src="{{ constant('App\\HttpClient\\Url::POSTER') ~ '/' ~ movie.posterPath }}"/>
+                    <div class="movie-details">
+                        <h3>{{ movie.title }}</h3>
+                        <span class="star"></span>
+                        <span class="movie-vote-count">{{ '(' ~ movie.voteCount ~ ')' }}</span>
+                        <p class="movie-overview">{{ movie.overview }}</p>
+                        <p align="right">
+                            <button 
+                                type="button" 
+                                class="btn btn-primary btn-rounded"
+                                data-action="movie#showMovie"
+                                data-movie-target="movieItem"
+                                data-movie-id="{{ movie.id }}"
+                                data-bs-toggle="modal" 
+                                data-bs-target="#movieModal"
+                            >Lire le details</button>
+                        </p>
+                    </div>
+                </div>    
+            {% endfor %}
+        </div>
+
+        <div class="modal fade" id="movieModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+@import "~bootstrap";
+
+body {
+    font-family: spartan;
+    color: #444;
+}
+
+.jumbotron-img {
+    background: rgb(237,116,88);
+    background: linear-gradient(302deg, rgba(237,116,88,1) 16%, rgba(51,61,81,1) 97%);
+    color: #fff;
+}
+
+.q-container {
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+    background-color: #efefee;
+}
+
+.q-container-show {
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+    background-color: #ED7458 ;
+}
+
+.q-container img, .q-container-show img {
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.q-display {
+    background: #fff;
+    border-radius: .25rem;
+}
+.q-title-show {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    color: #fff;
+}
+.q-title {
+    text-transform: uppercase;
+    color: #444;
+}
+
+.q-title:hover {
+    color: #2B2B2B;
+}
+
+.q-title h2 {
+    font-size: 1.3rem;
+}
+
+.vote-arrows, .vote-arrows .btn {
+    font-size: 1.5rem;
+}
+
+.vote-arrows .btn {
+    color: #444;
+    padding: 0;
+}
+
+.vote-arrows span {
+    font-size: 1rem;
+}
+
+.vote-up:hover {
+    color: #3D9970;
+}
+.vote-down:hover {
+    color: #FF4136;
+}
+
+.vote-arrows-alt .vote-up:hover {
+    color: #3D9970;
+}
+.vote-arrows-alt .vote-down:hover {
+    color: rgba(179, 20, 12, 0.63);
+}
+
+footer {
+    background-color: #efefee;
+}
+
+.movie-list {
+    display: flex;
+}
+
+.column-genres {
+    flex: 20%;
+    margin-right: 20px;
+}
+
+.column-movies {
+    flex: 75%;
+}
+
+.movie-item {
+    display: flex;
+    margin-top: 10px;
+    background-color: #f3efef;
+    padding: 20px;
+}
+
+.movie-poster {
+    flex: 10%;
+    width: 100px; 
+    height: 130px;
+}
+
+.movie-details {
+    flex: 85%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.movie-overview {
+    text-align: justify;
+}
+
+.search-preview {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    top: 44px;
+}
+
+.search-preview img {
+    width: 50px;
+    display: inline;
+}
+
